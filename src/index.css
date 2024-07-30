@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar styles */
+.scrollbar-hide::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.scroll-thumb::-webkit-scrollbar-thumb {
+  background-color: #a0aec0; /* Change this color to your preference */
+  border-radius: 10px;
+}
+
+.scroll-thumb {
+  scrollbar-width: thin;
+  scrollbar-color: #a0aec0 transparent; /* thumb color and track color */
+}
+
+.height {
+  height: calc(100vh - 104px);
+}
+
+.shadow {
+  box-shadow: 10px 10px 10px 200px 10px black;
+}
