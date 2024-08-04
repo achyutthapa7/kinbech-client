@@ -11,16 +11,19 @@ const Cart = () => {
   const handleCheckout = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3000/checkout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          items: Cart,
-        }),
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_PRODUCTION_URL}/checkout`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            items: Cart,
+          }),
+          credentials: "include",
+        }
+      );
 
       const data = await res.json();
       if (data.url) window.location.href = data.url;
