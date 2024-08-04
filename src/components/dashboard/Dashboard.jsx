@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import { useUser } from "../../context/User";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-
+import { toast } from "react-hot-toast";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useUser();
-
+  const handleLogOut = () => {
+    setUserInfo({ ...userInfo, userDetails: null, token: "" });
+  };
   useEffect(() => {
     if (userInfo.mode === "Buying") {
       navigate("/");
@@ -24,7 +26,7 @@ const Dashboard = () => {
           <li>
             <Link
               to="addproduct"
-              className="text-blue-500 hover:underline hover:text-blue-700"
+              className="hover:text-blue-600 hover:underline-offset-1 hover:underline w-full text-left"
             >
               Add a product
             </Link>
@@ -32,22 +34,36 @@ const Dashboard = () => {
           <li>
             <Link
               to="allproduct"
-              className="text-blue-500 hover:underline hover:text-blue-700"
+              className="hover:text-blue-600 hover:underline-offset-1 hover:underline w-full text-left"
             >
               View all products
             </Link>
           </li>
-          <li className="text-gray-700 hover:text-gray-900 cursor-pointer">
-            Update username
+          <li className="hover:text-blue-600 hover:underline-offset-1 hover:underline w-full text-left">
+            <Link to={"/settings/updateusername"} className="mb-4 w-full">
+              Change Username
+            </Link>{" "}
+          </li>
+          <li className="hover:text-blue-600 hover:underline-offset-1 hover:underline w-full text-left">
+            <Link to={"/settings/updatepassword"} className="mb-4 w-full">
+              Update Password
+            </Link>
+          </li>
+          <li className="hover:text-blue-600 hover:underline-offset-1 hover:underline w-full text-left">
+            <Link to={"/settings/resetpassword"} className="mb-4 w-full">
+              Reset Password
+            </Link>{" "}
           </li>
           <li className="text-gray-700 hover:text-gray-900 cursor-pointer">
-            Reset Password
-          </li>
-          <li className="text-gray-700 hover:text-gray-900 cursor-pointer">
-            Forget Password
-          </li>
-          <li className="text-gray-700 hover:text-gray-900 cursor-pointer">
-            Logout
+            <button
+              className="transition-all delay-100 duration-100 hover:bg-red-600 hover:text-white px-7 py-2 rounded-md"
+              onClick={() => {
+                handleLogOut();
+                toast("Logged Out successfully");
+              }}
+            >
+              Logout
+            </button>
           </li>
         </ul>
       </div>

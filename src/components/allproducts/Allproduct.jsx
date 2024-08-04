@@ -8,7 +8,7 @@ const AllProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch("http://localhost:3000/fetchProduct", {
+        const res = await fetch(`${import.meta.env.VITE_PRODUCTION_URL}/fetchProduct`, {
           method: "GET",
           credentials: "include",
         });

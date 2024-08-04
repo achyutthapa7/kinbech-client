@@ -28,7 +28,7 @@ const Nav = ({ setModal = () => {}, menu, setMenu = () => {} }) => {
         </div>
       </div>
       <div className="flex-1 lg:flex justify-end items-center gap-10 hidden">
-        {userInfo.mode === "Buying" && (
+        {userInfo.mode === "Buying" && userInfo.userDetails && (
           <Link to={"/cart"} className="relative">
             <FaShoppingCart className="text-white text-xl cursor-pointer " />
             <span className="absolute -top-2 left-4 w-[15px] h-[15px] bg-red-600 text-white rounded-full flex items-center justify-center p-2 text-sm">
@@ -42,16 +42,16 @@ const Nav = ({ setModal = () => {}, menu, setMenu = () => {} }) => {
               className="w-[40px] h-[40px] rounded-full bg-white cursor-pointer flex justify-center items-center relative"
               onClick={() => setDropDown(!dropDown)}
             >
-              {userInfo.userDetails.userName[0].toUpperCase()}
+              {userInfo.userDetails.userName[0]?.toUpperCase()}
               <div
                 className={`transition-all delay-75 duration-100 absolute top-12 right-0 bg-white shadow-2xl rounded-lg p-2  ${
-                  dropDown ? "h-auto w-[200px]" : "hidden"
-                } overflow-hidden`}
+                  dropDown ? "h-auto w-[300px]" : "hidden"
+                } overflow-hidden `}
               >
                 {dropDown && (
                   <>
                     {userInfo.mode === "Buying" && (
-                      <div className="flex flex-col items-center justify-center gap-6 h-auto text-xl">
+                      <div className="flex flex-col items-center justify-center gap-6 h-auto text-xl ">
                         <button
                           className="transition-all delay-100 duration-100 hover:bg-green-600 hover:text-white px-7 py-2 rounded-md"
                           onClick={() => {
@@ -61,6 +61,22 @@ const Nav = ({ setModal = () => {}, menu, setMenu = () => {} }) => {
                         >
                           Sell product
                         </button>
+
+                        <Link to={"/settings/updateusername"}>
+                          <button className="hover:text-blue-600 hover:underline-offset-1 hover:underline pb-2">
+                            update username
+                          </button>
+                        </Link>
+                        <Link to={"/settings/updatepassword"}>
+                          <button className="hover:text-blue-600 hover:underline-offset-1 hover:underline pb-2">
+                            update password
+                          </button>
+                        </Link>
+                        <Link to={"/settings/forgetpassword"}>
+                          <button className="hover:text-blue-600 hover:underline-offset-1 hover:underline pb-2">
+                            forget password
+                          </button>
+                        </Link>
                         <button
                           className="transition-all delay-100 duration-100 hover:bg-red-600 hover:text-white px-7 py-2 rounded-md"
                           onClick={() => {

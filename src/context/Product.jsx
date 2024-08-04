@@ -4,7 +4,7 @@ export const Product = ({ children }) => {
   const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
     const fetchAllProduct = async () => {
-      const res = await fetch("http://localhost:3000/fetchAllProduct", {
+      const res = await fetch(`${import.meta.env.VITE_PRODUCTION_URL}/fetchAllProduct`, {
         method: "GET",
         credentials: "include",
       });

@@ -96,7 +96,7 @@ const Updateproduct = () => {
     try {
       let result;
       if (data.has("image")) {
-        const res = await fetch("http://localhost:3000/addimage", {
+        const res = await fetch(`${import.meta.env.VITE_PRODUCTION_URL}/addimage`, {
           method: "POST",
           body: data,
           credentials: "include",
@@ -113,7 +113,7 @@ const Updateproduct = () => {
         result = { fileUrls: [] };
       }
 
-      const response = await fetch(`http://localhost:3000/updateproduct`, {
+      const response = await fetch(`${import.meta.env.VITE_PRODUCTION_URL}/updateproduct`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

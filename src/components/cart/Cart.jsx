@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 
 const Cart = () => {
   const [Cart, dispatch] = useCart();
+
   const [loading, setLoading] = useState(false);
   const handleCheckout = async () => {
     setLoading(true);
@@ -36,7 +37,11 @@ const Cart = () => {
   const [removing, setRemoving] = useState(false);
 
   useEffect(() => {
-    if (userInfo.mode === "Selling") {
+    if (
+      userInfo.mode === "Selling" ||
+      !userInfo.userDetails ||
+      !userInfo.token
+    ) {
       navigate("/dashboard");
     }
   }, [navigate, userInfo]);
@@ -81,16 +86,6 @@ const Cart = () => {
                     category: {item.itemCategory}
                   </p>
                   <div className="flex gap-5">
-                    <div className="flex-1">
-                      <button
-                        className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 w-full"
-                        onClick={() => {
-                          navigate("/payment");
-                        }}
-                      >
-                        Buy Now
-                      </button>
-                    </div>
                     <div className="flex-1">
                       {" "}
                       <button

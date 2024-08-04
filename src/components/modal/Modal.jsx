@@ -77,17 +77,20 @@ const Loginform = ({ setIsSignUp, setModal = () => {} }) => {
       setIsLoading(false);
     } else {
       try {
-        const res = await fetch("http://localhost:3000/login", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            userName,
-            password,
-          }),
-          credentials: "include",
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_PRODUCTION_URL}/login`,
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              userName,
+              password,
+            }),
+            credentials: "include",
+          }
+        );
 
         const data = await res.json();
         if (res.status === 200) {
@@ -216,23 +219,26 @@ const Registrationform = ({ setIsSignUp, setModal = () => {} }) => {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/registration", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          dateOfBirth,
-          gender,
-          emailAddress,
-          userName,
-          password,
-          confirmPassword,
-        }),
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_PRODUCTION_URL}/registration`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            dateOfBirth,
+            gender,
+            emailAddress,
+            userName,
+            password,
+            confirmPassword,
+          }),
+          credentials: "include",
+        }
+      );
 
       const data = await res.json();
 

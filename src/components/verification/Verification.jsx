@@ -26,7 +26,7 @@ const Verification = () => {
       setVerifying(false);
     }
     try {
-      const res = await fetch("http://localhost:3000/verification", {
+      const res = await fetch(`${import.meta.env.VITE_PRODUCTION_URL}/verification`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

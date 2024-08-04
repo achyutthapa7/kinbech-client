@@ -11,9 +11,12 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Addproduct from "./components/addproduct/Addproduct";
 import Allproduct from "./components/allproducts/Allproduct";
 import Updateproduct from "./components/allproducts/Updateproduct";
-import Payment from "./components/payment/Payment";
 import Success from "./components/Success";
 import Cancel from "./components/cancel/Cancel";
+import Settings from "./components/settings/Settings";
+import Updateusername from "./components/updateusername/Updateusername";
+import Updatepassword from "./components/updatepassword/Updatepassword";
+import Forgetpassword from "./components/forgetpassword/Forgetpassword";
 const App = () => {
   const [modal, setModal] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -21,7 +24,7 @@ const App = () => {
     <div className="relative">
       <Modal modal={modal} setModal={setModal} />
       <Nav setModal={setModal} menu={menu} setMenu={setMenu} />
-      <Sidebar menu={menu} />
+      <Sidebar menu={menu} setMenu={setMenu} setModal={setModal} />
 
       <Routes>
         <Route path="/" element={<Home setModal={setModal} />} />
@@ -32,9 +35,13 @@ const App = () => {
           <Route path="allproduct" element={<Allproduct />} />
           <Route path="allproduct/updateproduct" element={<Updateproduct />} />
         </Route>
-        <Route path="/payment" element={<Payment />} />
         <Route path="/success" element={<Success />} />
         <Route path="/cancel" element={<Cancel />} />
+        <Route path="/settings/*" element={<Settings />}>
+          <Route path="updateusername" element={<Updateusername />} />
+          <Route path="updatepassword" element={<Updatepassword />} />
+          <Route path="forgetpassword" element={<Forgetpassword />} />
+        </Route>
         <Route path="*" element={<Notfound />} />
       </Routes>
     </div>

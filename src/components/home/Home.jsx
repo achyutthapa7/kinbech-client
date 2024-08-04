@@ -153,16 +153,6 @@ const Home = ({ setModal = () => {} }) => {
                       !userInfo.token) && (
                       <div className="flex gap-5">
                         <div className="flex-1">
-                          <button
-                            className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 w-full"
-                            onClick={() => {
-                              navigate("/payment");
-                            }}
-                          >
-                            Buy Now
-                          </button>
-                        </div>
-                        <div className="flex-1">
                           {isInCart(pd._id) ? (
                             <button
                               onClick={() => {

@@ -85,32 +85,38 @@ const AddProduct = () => {
       data.append("image", img.file);
     });
     try {
-      const res = await fetch("http://localhost:3000/addimage", {
-        method: "POST",
-        body: data,
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_PRODUCTION_URL}/addimage`,
+        {
+          method: "POST",
+          body: data,
+          credentials: "include",
+        }
+      );
       if (res.status === 400) {
         toast.error("Atleast one image is required");
       }
       if (res.status === 200) {
         const result = await res.json();
-        const response = await fetch("http://localhost:3000/addproduct", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            itemName,
-            itemDesc,
-            itemPrice,
-            anyDiscount,
-            itemPriceAfterDiscount,
-            itemCategory,
-            itemImage: result.fileUrls,
-          }),
-          credentials: "include",
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_PRODUCTION_URL}/addproduct`,
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              itemName,
+              itemDesc,
+              itemPrice,
+              anyDiscount,
+              itemPriceAfterDiscount,
+              itemCategory,
+              itemImage: result.fileUrls,
+            }),
+            credentials: "include",
+          }
+        );
         if (response.status === 200) {
           setFormData({
             itemName: "",
