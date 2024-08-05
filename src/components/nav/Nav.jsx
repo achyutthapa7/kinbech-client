@@ -97,14 +97,14 @@ const Nav = ({ setModal = () => {}, menu, setMenu = () => {} }) => {
                             update password
                           </button>
                         </Link>
-                        <Link
+                        {/* <Link
                           to={"/settings/forgetpassword"}
                           onClick={handleForgetPassword}
                         >
                           <button className="hover:text-blue-600 hover:underline-offset-1 hover:underline pb-2">
                             forget password
                           </button>
-                        </Link>
+                        </Link> */}
                         <button
                           className="transition-all delay-100 duration-100 hover:bg-red-600 hover:text-white px-7 py-2 rounded-md"
                           onClick={() => {

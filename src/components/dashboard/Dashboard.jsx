@@ -49,11 +49,11 @@ const Dashboard = () => {
               Update Password
             </Link>
           </li>
-          <li className="hover:text-blue-600 hover:underline-offset-1 hover:underline w-full text-left">
+          {/* <li className="hover:text-blue-600 hover:underline-offset-1 hover:underline w-full text-left">
             <Link to={"/settings/resetpassword"} className="mb-4 w-full">
               Reset Password
             </Link>{" "}
-          </li>
+          </li> */}
           <li className="text-gray-700 hover:text-gray-900 cursor-pointer">
             <button
               className="transition-all delay-100 duration-100 hover:bg-red-600 hover:text-white px-7 py-2 rounded-md"

@@ -123,7 +123,7 @@ const Sidebar = ({ menu, setMenu = () => {}, setModal = () => {} }) => {
                 Update Password
               </button>
             </Link>
-            <Link
+            {/* <Link
               className="mb-4 w-full"
               onClick={() => {
                 closeMenu();
@@ -133,7 +133,7 @@ const Sidebar = ({ menu, setMenu = () => {}, setModal = () => {} }) => {
               <button className="hover:text-blue-600 hover:underline-offset-1 hover:underline w-full text-left">
                 forget Password
               </button>
-            </Link>
+            </Link> */}
             {userInfo.mode === "Selling" && (
               <>
                 <Link

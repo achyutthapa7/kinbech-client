@@ -41,8 +41,8 @@ const App = () => {
         <Route path="/settings/*" element={<Settings />}>
           <Route path="updateusername" element={<Updateusername />} />
           <Route path="updatepassword" element={<Updatepassword />} />
-          <Route path="forgetpassword" element={<Forgetpassword />} />
-          <Route path="resetpassword" element={<Resetpassword />} />
+          {/* <Route path="forgetpassword" element={<Forgetpassword />} /> */}
+          {/* <Route path="resetpassword" element={<Resetpassword />} /> */}
         </Route>
         <Route path="*" element={<Notfound />} />
       </Routes>
