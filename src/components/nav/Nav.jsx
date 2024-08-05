@@ -130,7 +130,16 @@ const Nav = ({ setModal = () => {}, menu, setMenu = () => {} }) => {
           )}
         </div>
       </div>
-      <div className="lg:hidden cursor-pointer" onClick={() => setMenu(!menu)}>
+      <div
+        className="lg:hidden cursor-pointer flex gap-10"
+        onClick={() => setMenu(!menu)}
+      >
+        <Link to={"/cart"} className="relative">
+          <FaShoppingCart className="text-white text-xl cursor-pointer " />
+          <span className="absolute -top-2 left-4 w-[15px] h-[15px] bg-red-600 text-white rounded-full flex items-center justify-center p-2 text-sm">
+            {Cart.length}
+          </span>
+        </Link>
         {menu ? (
           <FaTimes className="text-white text-xl" />
         ) : (
