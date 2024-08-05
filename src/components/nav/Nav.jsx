@@ -1,16 +1,41 @@
 import React, { useState } from "react";
 import { FaSearch, FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
 import { useUser } from "../../context/User";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useCart } from "../../context/Cartcontext";
 
 const Nav = ({ setModal = () => {}, menu, setMenu = () => {} }) => {
   const [userInfo, setUserInfo] = useUser();
   const [dropDown, setDropDown] = useState(false);
+  const navigate = useNavigate();
   const [Cart] = useCart();
   const handleLogOut = () => {
     setUserInfo({ ...userInfo, userDetails: null, token: "" });
+  };
+
+  const handleForgetPassword = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_PRODUCTION_URL}/forgetpassword`,
+        {
+          method: "POST",
+          headers: {
+            "content-cype": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      const data = await response.json();
+      if (response.status === 200) {
+        toast.success(`Verfication code is sent to ${data.emailAddress}`);
+        navigate("/settings/forgetpassword", { state: data });
+      } else {
+        toast.error("error");
+      }
+    } catch (error) {
+      toast.error("Error sending verification code.");
+    }
   };
   return (
     <nav className="bg-blue-500 py-8 px-5 sticky top-0 flex gap-5 items-center z-50">
@@ -72,7 +97,10 @@ const Nav = ({ setModal = () => {}, menu, setMenu = () => {} }) => {
                             update password
                           </button>
                         </Link>
-                        <Link to={"/settings/forgetpassword"}>
+                        <Link
+                          to={"/settings/forgetpassword"}
+                          onClick={handleForgetPassword}
+                        >
                           <button className="hover:text-blue-600 hover:underline-offset-1 hover:underline pb-2">
                             forget password
                           </button>

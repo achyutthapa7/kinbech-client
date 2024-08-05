@@ -17,6 +17,7 @@ import Settings from "./components/settings/Settings";
 import Updateusername from "./components/updateusername/Updateusername";
 import Updatepassword from "./components/updatepassword/Updatepassword";
 import Forgetpassword from "./components/forgetpassword/Forgetpassword";
+import Resetpassword from "./components/forgetpassword/Resetpassword";
 const App = () => {
   const [modal, setModal] = useState(false);
   const [menu, setMenu] = useState(false);
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="updateusername" element={<Updateusername />} />
           <Route path="updatepassword" element={<Updatepassword />} />
           <Route path="forgetpassword" element={<Forgetpassword />} />
+          <Route path="resetpassword" element={<Resetpassword />} />
         </Route>
         <Route path="*" element={<Notfound />} />
       </Routes>

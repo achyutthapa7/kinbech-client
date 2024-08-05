@@ -14,8 +14,6 @@ export const Product = ({ children }) => {
           credentials: "include",
         }
       );
-      console.log(`Response status: ${res.status}`);
-      console.log(`Response headers: ${JSON.stringify(res.headers)}`);
 
       if (res.status === 200) {
         const data = await res.json();
