@@ -40,6 +40,29 @@ const Sidebar = ({ menu, setMenu = () => {}, setModal = () => {} }) => {
     };
   }, [setMenu]);
 
+  const handleForgetPassword = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_PRODUCTION_URL}/forgetpassword`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      const data = await response.json();
+      if (response.status === 200) {
+        toast.success(`Verfication code is sent to ${data.emailAddress}`);
+        navigate("/settings/forgetpassword", { state: data });
+      } else {
+        toast.error("error");
+      }
+    } catch (error) {
+      toast.error("Error sending verification code.");
+    }
+  };
   return (
     <div
       className={`z-50 transition-transform delay-75 duration-150 h-screen w-[270px] shadow-2xl fixed top-0 bg-white rounded-md ${
@@ -101,12 +124,14 @@ const Sidebar = ({ menu, setMenu = () => {}, setModal = () => {} }) => {
               </button>
             </Link>
             <Link
-              to={"/settings/forgetpassword"}
               className="mb-4 w-full"
-              onClick={closeMenu}
+              onClick={() => {
+                closeMenu();
+                handleForgetPassword();
+              }}
             >
               <button className="hover:text-blue-600 hover:underline-offset-1 hover:underline w-full text-left">
-                Reset Password
+                forget Password
               </button>
             </Link>
             {userInfo.mode === "Selling" && (

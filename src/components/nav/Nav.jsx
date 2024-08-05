@@ -21,7 +21,7 @@ const Nav = ({ setModal = () => {}, menu, setMenu = () => {} }) => {
         {
           method: "POST",
           headers: {
-            "content-cype": "application/json",
+            "content-type": "application/json",
           },
           credentials: "include",
         }
