@@ -8,10 +8,13 @@ const AllProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_PRODUCTION_URL}/fetchProduct`, {
-          method: "GET",
-          credentials: "include",
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_PRODUCTION_URL}/fetchProduct`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
         if (res.status === 404) {
           const data = await res.json();
           toast.error(data.message);
@@ -30,14 +33,17 @@ const AllProduct = () => {
   const removeProduct = async (id) => {
     console.log(id);
     try {
-      const res = await fetch("http://localhost:3000/removeproduct", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ id }),
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_PRODUCTION_URL}/removeproduct`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ id }),
+          credentials: "include",
+        }
+      );
 
       const data = await res.json();
 

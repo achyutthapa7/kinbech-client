@@ -4,13 +4,27 @@ export const Product = ({ children }) => {
   const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
     const fetchAllProduct = async () => {
-      const res = await fetch(`${import.meta.env.VITE_PRODUCTION_URL}/fetchAllProduct`, {
-        method: "GET",
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_PRODUCTION_URL}/fetchAllProduct`,
+        {
+          method: "GET",
+          headers: {
+            "content-type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
+      console.log(`Response status: ${res.status}`);
+      console.log(`Response headers: ${JSON.stringify(res.headers)}`);
+
       if (res.status === 200) {
         const data = await res.json();
         setAllProducts(data);
+      } else {
+        const errorData = await res.json();
+        console.error(
+          `Failed to fetch products: ${res.status} - ${errorData.message}`
+        );
       }
     };
     fetchAllProduct();
